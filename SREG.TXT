@@ -1,0 +1,4 @@
+/* Contents of Status Register OTP Array. This is an array of 24 single bits. */
+/* Index 9 = QE bit, set to 1 to enable Quad mode */
+/* Format: bit[0] bit[1] bit[2] ... bit[9] (QE) ... bit[23] */
+0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
