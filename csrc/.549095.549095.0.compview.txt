@@ -1,0 +1,5 @@
+{"vcs1":{"timestamp_begin":1770195495.406782828, "rt":0.09, "ut":0.02, "st":0.01}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1770195495.296165759}
+{"VCS_COMP_START_TIME": 1770195495.296165759}
+{"VCS_COMP_END_TIME": 1770195495.511284400}
+{"VCS_USER_OPTIONS": "-full64 -sverilog rtl/qspi_flash_ctrl.v rtl/qspi_prog_ahb.v rtl/qspi_xip_prog_ctrl.v rtl/qspi_addr_decode.v tb/tb_qspi_xip_prog.v -o simv"}

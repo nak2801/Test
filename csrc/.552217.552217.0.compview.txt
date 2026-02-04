@@ -1,0 +1,9 @@
+{"vcs1":{"timestamp_begin":1770195759.557395475, "rt":0.28, "ut":0.18, "st":0.05}}
+{"vcselab":{"timestamp_begin":1770195759.874711656, "rt":0.16, "ut":0.09, "st":0.03}}
+{"link":{"timestamp_begin":1770195760.058517438, "rt":0.06, "ut":0.04, "st":0.02}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1770195759.438939314}
+{"VCS_COMP_START_TIME": 1770195759.438939314}
+{"VCS_COMP_END_TIME": 1770195760.156252012}
+{"VCS_USER_OPTIONS": "-full64 -sverilog rtl/qspi_flash_ctrl.v rtl/qspi_prog_ahb.v rtl/qspi_xip_prog_ctrl.v rtl/qspi_addr_decode.v W25Q128JVxIM.v tb/tb_qspi_winbond.v -o simv_winbond"}
+{"vcs1": {"peak_mem": 308536}}
+{"vcselab": {"peak_mem": 167260}}

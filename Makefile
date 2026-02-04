@@ -32,7 +32,7 @@ TB_TOP_WINBOND = tb_qspi_winbond
 VSIM_OPTS = -c -do "run -all; quit"
 VLOG_OPTS = +acc
 
-.PHONY: all compile sim sim_winbond clean help
+.PHONY: all compile sim sim_winbond compile_vcs sim_vcs compile_vcs_winbond sim_vcs_winbond clean help
 
 all: sim
 
@@ -67,6 +67,36 @@ gui_winbond: compile_winbond
 	$(VSIM) -work $(WORK) $(TB_TOP_WINBOND)
 
 #----------------------------------------------------------------------
+# VCS (Verilog Compiler Simulator) - Simple Flash Model
+#----------------------------------------------------------------------
+compile_vcs:
+	@echo "=== Compiling with VCS ==="
+	vcs -full64 -sverilog $(RTL_FILES) $(TB_FILES) -o simv
+
+sim_vcs: compile_vcs
+	@echo "=== Running Simulation ==="
+	./simv
+
+gui_vcs: compile_vcs
+	@echo "=== Running GUI with VCS ==="
+	./simv -gui
+
+#----------------------------------------------------------------------
+# VCS (Verilog Compiler Simulator) - Winbond W25Q128JVxIM Flash Model
+#----------------------------------------------------------------------
+compile_vcs_winbond:
+	@echo "=== Compiling with VCS (Winbond Model) ==="
+	vcs -full64 -sverilog $(RTL_FILES) $(FLASH_MODEL) $(TB_WINBOND) -o simv_winbond
+
+sim_vcs_winbond: compile_vcs_winbond
+	@echo "=== Running Simulation ==="
+	./simv_winbond
+
+gui_vcs_winbond: compile_vcs_winbond
+	@echo "=== Running GUI with VCS (Winbond Model) ==="
+	./simv_winbond -gui
+
+#----------------------------------------------------------------------
 # Icarus Verilog
 #----------------------------------------------------------------------
 iverilog:
@@ -87,7 +117,9 @@ wave:
 
 clean:
 	rm -rf $(WORK)
-	rm -f *.vcd *.vvp *.wlf *.log
+	rm -f *.vcd *.vvp *.wlf *.log *.vpd
+	rm -f simv simv_winbond
+	rm -rf simv.daidir simv_winbond.daidir
 	rm -f transcript
 
 help:
@@ -102,6 +134,16 @@ help:
 	@echo "ModelSim/Questa (Winbond W25Q128JVxIM):"
 	@echo "  make sim_winbond  - Run with Winbond model (CLI)"
 	@echo "  make gui_winbond  - Run with Winbond model (GUI)"
+	@echo ""
+	@echo "VCS (Simple Flash Model):"
+	@echo "  make compile_vcs  - Compile only"
+	@echo "  make sim_vcs      - Compile and run simulation (CLI)"
+	@echo "  make gui_vcs      - Compile and run with GUI"
+	@echo ""
+	@echo "VCS (Winbond W25Q128JVxIM):"
+	@echo "  make compile_vcs_winbond  - Compile only"
+	@echo "  make sim_vcs_winbond      - Compile and run with Winbond model (CLI)"
+	@echo "  make gui_vcs_winbond      - Compile and run with Winbond model (GUI)"
 	@echo ""
 	@echo "Icarus Verilog:"
 	@echo "  make iverilog         - Simple flash model"
